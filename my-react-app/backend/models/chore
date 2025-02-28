@@ -1,0 +1,6 @@
+export interface Chore {
+    chore: string;
+    due_date: string;
+    status: string;
+    user: string;
+}

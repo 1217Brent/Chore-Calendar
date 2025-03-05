@@ -1,5 +1,5 @@
 import React from "react";
-import { db } from "../../../firebaseConfig";
+import { db } from "../firebaseConfig";
 import { doc, updateDoc, getDoc } from "firebase/firestore";
 
 interface ChoreEntryProps {

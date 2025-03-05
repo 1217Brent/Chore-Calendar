@@ -1,7 +1,7 @@
 import ChoreEntry from "./choreEntry";
-import { fetchAllChores } from "../../../backend/models/csFirebase";
+import { fetchAllChores } from "../../backend/csFirebase";
 import { useState, useEffect } from "react";
-import { deleteChore } from "../../../backend/models/csFirebase";
+import { deleteAllChores } from "../../backend/csFirebase";
 
 const ChoreList: React.FC = () => {
     let [allChores, setAllChores] = useState<any>([]);
@@ -13,7 +13,10 @@ const ChoreList: React.FC = () => {
         fetchAll();
     }, []);
     const deleteAll = async () => {
-        deleteChore();
+        // deleteChore(); only running this will not update the entire page since you need to update the state
+        await deleteAllChores();
+        const newChoreList = fetchAllChores();
+        setAllChores(newChoreList);
     }
     return (
         <div className = "container">

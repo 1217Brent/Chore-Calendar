@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
+import NavBar from "./navBar";
 
 function CreateChore() {
     const navigate = useNavigate();
@@ -17,6 +18,7 @@ function CreateChore() {
         <div className="d-flex justify-content-center align-items-center vh-100">
             <form onSubmit={handleSubmit} className="p-5 border rounded shadow bg-light" style={{ maxWidth: "400px", width: "100%" }}>
                 <h2 className="text-center mb-5">Add Chore</h2>
+                <NavBar />
                 <div className="form-group mb-4">
                     <label htmlFor="name">Name</label>
                     <input

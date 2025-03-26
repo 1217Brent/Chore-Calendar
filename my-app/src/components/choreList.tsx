@@ -16,8 +16,8 @@ const ChoreList: React.FC<ChoreEntryProps> = ({ choreCollection }) => {
         const docSnap = querySnapshot.docs[0];
         const choreRef = docSnap.ref;
         await updateDoc(choreRef, { status: true });
-
         alert("Chore marked as finished!");
+        window.location.reload();
       } else {
         alert("No such document!");
       }

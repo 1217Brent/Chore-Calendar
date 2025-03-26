@@ -10,7 +10,6 @@ type ChoreToCreate = {
     status: boolean;
     chore: string;
 }
-
 function CreateChore() {
     const [choreData, setChoreData] = useState<ChoreToCreate>({
         id: "",

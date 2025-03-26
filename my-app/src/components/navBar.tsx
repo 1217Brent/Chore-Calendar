@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { Link, useLocation } from "react-router-dom"; // Import useLocation
 
 function NavBar() {
+  const location = useLocation(); // Get the current location
+
   return (
     <div
       className="d-flex flex-column flex-shrink-0 p-3 text-white bg-dark"
@@ -27,7 +29,13 @@ function NavBar() {
       <hr />
       <ul className="nav nav-pills flex-column mb-auto">
         <li className="nav-item">
-          <Link to="/dashboard" className="nav-link active" aria-current="page">
+          <Link
+            to="/dashboard"
+            className={`nav-link ${
+              location.pathname === "/dashboard" ? "active" : "text-white"
+            }`}
+            aria-current="page"
+          >
             <svg className="bi me-2" width="16" height="16">
               <use xlinkHref="#home" />
             </svg>
@@ -35,7 +43,12 @@ function NavBar() {
           </Link>
         </li>
         <li>
-          <Link to="#" className="nav-link text-white">
+          <Link
+            to="/instructions"
+            className={`nav-link ${
+              location.pathname === "/instructions" ? "active" : "text-white"
+            }`}
+          >
             <svg className="bi me-2" width="16" height="16">
               <use xlinkHref="#speedometer2" />
             </svg>
@@ -43,7 +56,12 @@ function NavBar() {
           </Link>
         </li>
         <li>
-          <Link to="/createchore" className="nav-link text-white">
+          <Link
+            to="/createchore"
+            className={`nav-link ${
+              location.pathname === "/createchore" ? "active" : "text-white"
+            }`}
+          >
             <svg className="bi me-2" width="16" height="16">
               <use xlinkHref="#table" />
             </svg>
@@ -51,7 +69,10 @@ function NavBar() {
           </Link>
         </li>
         <li>
-          <Link to="#" className="nav-link text-white">
+          <Link
+            to="#"
+            className="nav-link text-white"
+          >
             <svg className="bi me-2" width="16" height="16">
               <use xlinkHref="#grid" />
             </svg>

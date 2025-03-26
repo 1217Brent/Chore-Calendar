@@ -36,7 +36,7 @@ export const fetchChore = async (id: string): Promise<Chore> => {
     }
 };
 
-export const addChore = async (id: string, due_date: string, user: string, chore: string): Promise<void> => {
+export const addChore = async (id: string, due_date: Date, user: string, chore: string): Promise<void> => {
     const data = {
         id: id,
         user: user,

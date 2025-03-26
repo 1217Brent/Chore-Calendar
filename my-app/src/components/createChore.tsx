@@ -1,52 +1,60 @@
 import React from "react";
-import { useState } from "react";
-import Chore from "../backend/models/chore";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 function CreateChore() {
+    const navigate = useNavigate();
+
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault(); // Prevent default form submission
         console.log("Form submitted");
     };
 
+    const handleBack = () => {
+        navigate('/dashboard');
+    };
+
     return (
-        <form onSubmit={handleSubmit}>
-            <h2 className="text-center">Add Chore</h2>
-            <div className="form-group">
-                <label htmlFor="exampleInputEmail1">Email address</label>
-                <input
-                    type="email"
-                    className="form-control"
-                    id="exampleInputEmail1"
-                    aria-describedby="emailHelp"
-                    placeholder="Enter email"
-                />
-                <small id="emailHelp" className="form-text text-muted">
-                    We'll never share your email with anyone else.
-                </small>
-            </div>
-            <div className="form-group">
-                <label htmlFor="exampleInputPassword1">Password</label>
-                <input
-                    type="password"
-                    className="form-control"
-                    id="exampleInputPassword1"
-                    placeholder="Password"
-                />
-            </div>
-            <div className="form-check">
-                <input
-                    type="checkbox"
-                    className="form-check-input"
-                    id="exampleCheck1"
-                />
-                <label className="form-check-label" htmlFor="exampleCheck1">
-                    Check me out
-                </label>
-            </div>
-            <button type="submit" className="btn btn-primary">
-                Submit
-            </button>
-        </form>
+        <div className="d-flex justify-content-center align-items-center vh-100">
+            <form onSubmit={handleSubmit} className="p-5 border rounded shadow bg-light" style={{ maxWidth: "400px", width: "100%" }}>
+                <h2 className="text-center mb-5">Add Chore</h2>
+                <div className="form-group mb-4">
+                    <label htmlFor="name">Name</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="name"
+                        aria-describedby="name"
+                        placeholder="Enter name"
+                    />
+                </div>
+                <div className="form-group mb-4">
+                    <label htmlFor="chore">Chore</label>
+                    <input
+                        type="text"
+                        className="form-control"
+                        id="chore"
+                        placeholder="Enter chore"
+                    />
+                </div>
+                <div className="form-group mb-5">
+                    <label htmlFor="due_date">Due Date</label>
+                    <input
+                        type="date"
+                        className="form-control"
+                        id="due_date"
+                        placeholder="Select date"
+                    />
+                </div>
+                <div className="d-flex justify-content-between">
+                    <button type="button" className="btn btn-danger" onClick={handleBack}>
+                        Back
+                    </button>
+                    <button type="submit" className="btn btn-dark">
+                        Submit
+                    </button>
+                </div>
+            </form>
+        </div>
     );
 }
 

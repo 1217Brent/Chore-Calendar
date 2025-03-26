@@ -1,5 +1,5 @@
-// NavBar.tsx
 import React from "react";
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 function NavBar() {
   return (
@@ -14,8 +14,8 @@ function NavBar() {
         overflowY: "auto",
       }}
     >
-      <a
-        href="/"
+      <Link
+        to="/dashboard"
         className="d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"
         style={{ textAlign: "center" }}
       >
@@ -23,46 +23,46 @@ function NavBar() {
           <use xlinkHref="#bootstrap" />
         </svg>
         <span className="fs-4">Chore Calendar</span>
-      </a>
+      </Link>
       <hr />
       <ul className="nav nav-pills flex-column mb-auto">
         <li className="nav-item">
-          <a href="#" className="nav-link active" aria-current="page">
+          <Link to="/dashboard" className="nav-link active" aria-current="page">
             <svg className="bi me-2" width="16" height="16">
               <use xlinkHref="#home" />
             </svg>
             Home
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" className="nav-link text-white">
+          <Link to="#" className="nav-link text-white">
             <svg className="bi me-2" width="16" height="16">
               <use xlinkHref="#speedometer2" />
             </svg>
             Instructions
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" className="nav-link text-white">
+          <Link to="/createchore" className="nav-link text-white">
             <svg className="bi me-2" width="16" height="16">
               <use xlinkHref="#table" />
             </svg>
             Add Chore
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" className="nav-link text-white">
+          <Link to="#" className="nav-link text-white">
             <svg className="bi me-2" width="16" height="16">
               <use xlinkHref="#grid" />
             </svg>
             Sign Out
-          </a>
+          </Link>
         </li>
       </ul>
       <hr />
       <div className="dropdown">
-        <a
-          href="#"
+        <Link
+          to="#"
           className="d-flex align-items-center text-white text-decoration-none dropdown-toggle"
           id="dropdownUser1"
           data-bs-toggle="dropdown"
@@ -76,33 +76,28 @@ function NavBar() {
             className="rounded-circle me-2"
           />
           <strong>mdo</strong>
-        </a>
+        </Link>
         <ul
           className="dropdown-menu dropdown-menu-dark text-small shadow"
           aria-labelledby="dropdownUser1"
         >
           <li>
-            <a className="dropdown-item" href="#">
-              New project...
-            </a>
-          </li>
-          <li>
-            <a className="dropdown-item" href="#">
+            <Link className="dropdown-item" to="#">
               Settings
-            </a>
+            </Link>
           </li>
           <li>
-            <a className="dropdown-item" href="#">
+            <Link className="dropdown-item" to="#">
               Profile
-            </a>
+            </Link>
           </li>
           <li>
             <hr className="dropdown-divider" />
           </li>
           <li>
-            <a className="dropdown-item" href="#">
+            <Link className="dropdown-item" to="#">
               Sign out
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

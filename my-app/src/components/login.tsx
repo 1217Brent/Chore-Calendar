@@ -45,7 +45,7 @@ const Login: React.FC = () => {
                 }}
             >
                 <h1 className="text-center mb-4" style={{ fontSize: '2rem', fontWeight: '700', color: '#fff' }}>
-                    LOGO
+                    LOGIN
                 </h1>
 
                 <form onSubmit={handleLogin}>

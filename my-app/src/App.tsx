@@ -15,12 +15,11 @@ const App: React.FC = () => {
       <div className="d-flex">
         <div className="flex-grow-1">
           <Routes>
-            {/* <Route path="/" element={<Login />} /> Default route */}
+            <Route path="/" element={<Login />} /> 
             <Route path="/dashboard" element={<DashBoard />} />
             <Route path="/createchore" element={<CreateChore />} />
             <Route path="/editchore/:id" element={<EditChore />} />
             <Route path="/signup" element={<SignUp />} /> {/* Add SignUp route */}
-            <Route path="/instructions" element={<Instructions />} /> {/* Add Instructions route */}
           </Routes>
         </div>
       </div>

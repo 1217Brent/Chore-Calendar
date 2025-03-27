@@ -1,7 +1,9 @@
+import { Timestamp } from "firebase/firestore";
+
 export default interface Chore {
     id: string;
     chore: string;
-    due_date: Date;
+    due_date: Timestamp;
     status: boolean;
     user: string;
 }

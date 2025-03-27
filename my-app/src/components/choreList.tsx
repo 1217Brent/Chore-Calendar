@@ -43,8 +43,8 @@ const ChoreList: React.FC<ChoreEntryProps> = ({ choreCollection }) => {
   return (
     <div className="vh-100 d-flex">
       <NavBar />
-      <div className="bg-dark flex-grow-1 d-flex flex-column p-5" style={{ backgroundColor: "#F9F9FB" }}>
-        <div className="d-flex justify-content-center align-items-center">
+      <div className=" flex-grow-1 d-flex flex-column p-5" style={{ backgroundColor: "#222222" }}>
+        <div className="d-flex justify-content-center align-items-center" >
           <div className="w-100 bg-white p-4 rounded-4 shadow-sm" style={{ maxWidth: "900px" }}>
           <h2 className="text-center mb-4" style={{ fontWeight: "bold", color: "#333" }}>
           To Be Completed

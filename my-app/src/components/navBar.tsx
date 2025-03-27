@@ -5,7 +5,7 @@ function NavBar() {
   const location = useLocation();
 
   return (
-    <nav className="bg-dark text-white vh-100 d-flex flex-column p-3" style={{ width: "280px" }}>
+    <nav className=" text-white vh-100 d-flex flex-column p-3" style={{ width: "280px", backgroundColor: "#222222"}}>
       <Link to="/dashboard" className="d-flex align-items-center justify-content-center mb-3 text-white text-decoration-none">
         <span className="fs-4">Chore Calendar</span>
       </Link>

@@ -1,4 +1,4 @@
-import { collection, getDocs, deleteDoc, doc, getDoc, addDoc, query, where } from "firebase/firestore";
+import { collection, getDocs, deleteDoc, doc, getDoc, addDoc, query, where, Timestamp } from "firebase/firestore";
 import { db } from "../firebaseConfig";
 import Chore from "./models/chore";
 import ChoreEntryProps from "./models/ChoreEntry";
@@ -36,7 +36,7 @@ export const fetchChore = async (id: string): Promise<Chore> => {
     }
 };
 
-export const addChore = async (id: string, due_date: Date, user: string, chore: string): Promise<void> => {
+export const addChore = async (id: string, due_date: Timestamp, user: string, chore: string): Promise<void> => {
     const data = {
         id: id,
         user: user,

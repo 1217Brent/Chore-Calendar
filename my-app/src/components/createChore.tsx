@@ -9,7 +9,8 @@ type ChoreToCreate = {
     due_date: string; // Change to string for input handling
     status: boolean;
     chore: string;
-}
+};
+
 function CreateChore() {
     const [choreData, setChoreData] = useState<ChoreToCreate>({
         id: "",
@@ -29,13 +30,12 @@ function CreateChore() {
         console.log("Form submitted", choreToSubmit);
         try {
             const docRef = await addDoc(collection(db, "chores"), choreToSubmit);
-            await updateDoc(docRef, { id: docRef.id});
+            await updateDoc(docRef, { id: docRef.id });
             alert("Successfully created chore!");
-        } catch(error) {
+        } catch (error) {
             console.log(error);
             alert("Failed to add chore");
         }
-
     };
 
     const handleBack = () => {
@@ -51,8 +51,22 @@ function CreateChore() {
     };
 
     return (
-        <div className="d-flex justify-content-center align-items-center vh-100">
-            <form onSubmit={handleSubmit} className="p-5 border rounded shadow bg-light" style={{ maxWidth: "400px", width: "100%" }}>
+        <div
+            className="d-flex justify-content-center align-items-center vh-100"
+            style={{ backgroundColor: '#1c1c1c' }} // Dark gray outer background
+        >
+            <form
+                onSubmit={handleSubmit}
+                className="p-5 border rounded shadow-lg"
+                style={{
+                    maxWidth: "400px",
+                    width: "100%",
+                    backgroundColor: '#333', // Gray inner box
+                    color: '#ccc', // Light gray text
+                    borderRadius: '8px',
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.5)', // Enhanced shadow
+                }}
+            >
                 <h2 className="text-center mb-5">Add Chore</h2>
                 <div className="form-group mb-4">
                     <label htmlFor="user">Name</label>
@@ -64,6 +78,7 @@ function CreateChore() {
                         className="form-control"
                         id="user"
                         placeholder="Enter name"
+                        style={{ backgroundColor: '#444', color: '#ccc', border: 'none' }} // Styled input
                     />
                 </div>
                 <div className="form-group mb-4">
@@ -76,6 +91,7 @@ function CreateChore() {
                         className="form-control"
                         id="chore"
                         placeholder="Enter chore"
+                        style={{ backgroundColor: '#444', color: '#ccc', border: 'none' }} // Styled input
                     />
                 </div>
                 <div className="form-group mb-5">
@@ -88,13 +104,14 @@ function CreateChore() {
                         className="form-control"
                         id="due_date"
                         placeholder="Select date"
+                        style={{ backgroundColor: '#444', color: '#ccc', border: 'none' }} // Styled input
                     />
                 </div>
                 <div className="d-flex justify-content-between">
                     <button type="button" className="btn btn-danger" onClick={handleBack}>
                         Back
                     </button>
-                    <button type="submit" className="btn btn-dark">
+                    <button type="submit" className="btn btn-primary">
                         Submit
                     </button>
                 </div>

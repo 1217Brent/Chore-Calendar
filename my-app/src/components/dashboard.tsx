@@ -1,6 +1,5 @@
-
 import { useState, useEffect } from "react";
-import ChoreList from "./choreList"; // Removed NavBar import as requested
+import ChoreList from "./choreList"; // Import ChoreList component
 import { fetchAllChores } from "../backend/csFirebase";
 import ChoreEntryProps from "../backend/models/ChoreEntry";
 
@@ -21,29 +20,26 @@ function DashBoard() {
 
   return (
     <div
-      className="d-flex justify-content-center align-items-center"
+      className="d-flex justify-content-center align-items-center vh-100"
       style={{
-        height: "100vh", // Full viewport height
-        backgroundImage: `url(${require('../assets/background.png')})`, // Set the background image
-        backgroundSize: "cover", // Cover the entire container
-        backgroundPosition: "center", // Center the image
+        backgroundColor: "#1c1c1c", // Dark gray background
+        padding: "2px", // Add padding to prevent the box from touching the edges
       }}
     >
       <div
-        className=" p-4 shadow-lg rounded-4 d-flex flex-column"
+        className="card shadow-lg p-4 d-flex flex-column"
         style={{
-          width: "90%", // Keep the width smaller to ensure there's space on the sides
-          maxWidth: "1000px", // Ensure it doesn't stretch too wide on larger screens
-          height: "90%", // Reduced height to make the container smaller vertically
-          maxHeight: "1000px", // Cap the maximum height to prevent overflowing
-          backgroundColor: "#222222", // Black background for the container
-          padding: "20px", // Inner padding for spacing around the content
-          display: "flex", // Flexbox for layout
-          flexDirection: "column", // Stack content vertically
-          justifyContent: "flex-start", // Align content at the top of the container
-          overflow: "hidden", // Ensure no overflow or scrolling
+          width: "90%",
+          maxWidth: "1000px", // Ensure it fits within the page
+          height: "90%",
+          maxHeight: "100vh", // Ensure it doesn't go off the page
+          backgroundColor: "#333", // Gray inner box
+          color: "#ccc", // Light gray text
+          borderRadius: "16px", // Rounded corners for the box
+          overflow: "hidden", // Prevent content overflow
         }}
       >
+        <h2 className="text-center text-light mb-4">Dashboard</h2>
         <ChoreList choreCollection={allChores.choreCollection} />
       </div>
     </div>

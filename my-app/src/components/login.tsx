@@ -14,10 +14,9 @@ const Login: React.FC = () => {
         setError('');
 
         try {
-            // Sign in the user with Firebase Authentication
             await signInWithEmailAndPassword(auth, email, password);
             console.log(`Logged in with email: ${email}`);
-            navigate('/dashboard'); // Redirect to the dashboard
+            navigate('/dashboard'); // Redirect to dashboard
         } catch (err: any) {
             console.error("Login error:", err.message);
             setError("Invalid email or password. Please try again.");
@@ -25,65 +24,115 @@ const Login: React.FC = () => {
     };
 
     const handleSignUp = () => {
-        navigate('/signup'); // Redirect to the sign-up page
+        navigate('/signup'); // Redirect to sign-up page
     };
 
     return (
         <div
             className="d-flex justify-content-center align-items-center vh-100"
-            style={{ backgroundColor: '#1c1c1c' }} // Light black background
+            style={{ backgroundColor: '#0d0d0d', flexDirection: 'column' }} // Stack vertically
         >
+            {/* Login Container */}
             <div
-                className="card shadow-lg p-4"
+                className="p-4 mb-3"
                 style={{
                     maxWidth: '400px',
                     width: '100%',
-                    backgroundColor: '#333', // Gray box
-                    color: '#ccc', // Gray text
+                    backgroundColor: '#1c1c1c', // Dark box
                     borderRadius: '8px',
-                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.5)', // Enhanced shadow
+                    color: '#ccc',
+                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
                 }}
             >
-                <h2 className="text-center mb-4">Login</h2>
+                <h1 className="text-center mb-4" style={{ fontSize: '2rem', fontWeight: '700', color: '#fff' }}>
+                    LOGO
+                </h1>
+
                 <form onSubmit={handleLogin}>
                     <div className="mb-3">
-                        <label htmlFor="email" className="form-label">Email</label>
                         <input
                             type="email"
                             id="email"
                             className="form-control"
+                            placeholder="Username"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required
-                            style={{ backgroundColor: '#444', color: '#ccc', border: 'none' }} // Styled input
+                            style={{
+                                backgroundColor: '#333',
+                                color: '#ccc',
+                                border: '1px solid #555', // Darker border
+                                padding: '10px 15px',
+                                marginBottom: '10px',
+                                borderRadius: '4px',
+                            }}
+                            // Adjust placeholder text color to match border
+                            onFocus={(e) => e.target.setAttribute('placeholder', '')}
+                            onBlur={(e) => e.target.setAttribute('placeholder', 'Username')}
                         />
                     </div>
                     <div className="mb-3">
-                        <label htmlFor="password" className="form-label">Password</label>
                         <input
                             type="password"
                             id="password"
                             className="form-control"
+                            placeholder="Password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required
-                            style={{ backgroundColor: '#444', color: '#ccc', border: 'none' }} // Styled input
+                            style={{
+                                backgroundColor: '#333',
+                                color: '#ccc',
+                                border: '1px solid #555', // Darker border
+                                padding: '10px 15px',
+                                marginBottom: '10px',
+                                borderRadius: '4px',
+                            }}
+                            // Adjust placeholder text color to match border
+                            onFocus={(e) => e.target.setAttribute('placeholder', '')}
+                            onBlur={(e) => e.target.setAttribute('placeholder', 'Password')}
                         />
                     </div>
                     {error && <p className="text-danger">{error}</p>}
-                    <div className="d-flex justify-content-between">
-                        <button type="submit" className="btn btn-primary">
-                            Login
-                        </button>
-                        <button
-                            type="button"
-                            onClick={handleSignUp}
-                            className="btn btn-secondary"
-                        >
-                            Sign Up
+
+                    <div className="d-flex justify-content-center mb-4">
+                        <button type="submit" className="btn btn-primary" style={{
+                            width: '100%',
+                            backgroundColor: '#007bff',
+                            padding: '10px 0',
+                            fontWeight: '500',
+                        }}>
+                            LOGIN
                         </button>
                     </div>
                 </form>
+            </div>
+
+            {/* "Don’t have an account? Sign Up" Container */}
+            <div
+                className="p-4"
+                style={{
+                    maxWidth: '400px',
+                    width: '100%',
+                    backgroundColor: '#1c1c1c', // Dark box
+                    color: '#ccc',
+                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
+                    textAlign: 'center',
+                }}
+            >
+                <p className="mb-0" style={{ color: '#ccc' }}>
+                    Don’t have an account?{' '}
+                    <span
+                        onClick={handleSignUp}
+                        style={{
+                            textDecoration: 'underline',
+                            color: '#007bff',
+                            cursor: 'pointer',
+                        }}
+                    >
+                        Sign Up
+                    </span>
+                </p>
             </div>
         </div>
     );

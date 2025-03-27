@@ -1,32 +1,51 @@
-import NavBar from "./navBar";
-import ChoreEntry from "./choreEntry";
-import ChoreEntryProps from "../backend/models/ChoreEntry";
+import React, { useState, useEffect } from "react";
+import ChoreList from "./choreList"; // Removed NavBar import as requested
 import { fetchAllChores } from "../backend/csFirebase";
-import { useState, useEffect } from "react";
+import ChoreEntryProps from "../backend/models/ChoreEntry";
 
 function DashBoard() {
-        const [allChores, setAllChores] = useState<ChoreEntryProps>({ choreCollection: [] });
-    
-        useEffect(() => {
-            const fetchData = async () => {
-                try {
-                    const chores = await fetchAllChores();
-                    setAllChores({ choreCollection: chores.choreCollection }); // Wrap the array in an object
-                } catch (error) {
-                    console.error("Error fetching chores:", error);
-                }
-            };
-    
-            fetchData();
-        }, []); // Empty dependency array means this effect runs once on mount
-    return (
-        <div className="d-flex bg-dark" style={{ height: '100vh', overflow: 'hidden' }}>
-        <NavBar />
-        <div className="flex-grow-1" style={{ marginLeft: '280px', padding: '20px' }}>
-            <ChoreEntry choreCollection={allChores.choreCollection} />
-        </div>
+  const [allChores, setAllChores] = useState<ChoreEntryProps>({ choreCollection: [] });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const chores = await fetchAllChores();
+        setAllChores({ choreCollection: chores.choreCollection });
+      } catch (error) {
+        console.error("Error fetching chores:", error);
+      }
+    };
+    fetchData();
+  }, []);
+
+  return (
+    <div
+      className="d-flex justify-content-center align-items-center"
+      style={{
+        height: "100vh",  // Take full viewport height
+        backgroundColor: "#f0f0f0",  // Light background color for the page
+        padding: "20px",
+      }}
+    >
+      <div
+        className="bg-dark p-4 shadow-lg rounded-4 d-flex flex-column"
+        style={{
+          width: "90%",  // Keep the width smaller to ensure there's space on the sides
+          maxWidth: "1000px",  // Ensure it doesn't stretch too wide on larger screens
+          height: "100%",  // Reduced height to make the container smaller vertically
+          maxHeight: "1300px",  // Cap the maximum height to prevent overflowing
+          backgroundColor: "black",  // Black background for the container
+          padding: "20px",  // Inner padding for spacing around the content
+          display: "flex",  // Flexbox for layout
+          flexDirection: "column",  // Stack content vertically
+          justifyContent: "flex-start",  // Align content at the top of the container
+          overflow: "hidden",  // Ensure no overflow or scrolling
+        }}
+      >
+        <ChoreList choreCollection={allChores.choreCollection} />
+      </div>
     </div>
-    )
+  );
 }
 
 export default DashBoard;

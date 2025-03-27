@@ -1,11 +1,15 @@
 import React from "react";
 import { db } from "../firebaseConfig";
-import { doc, updateDoc, getDocs, query, collection, where, Timestamp } from "firebase/firestore";
+import { updateDoc, getDocs, query, collection, where, Timestamp } from "firebase/firestore";
 import Chore from "../backend/models/chore";
 import ChoreEntryProps from "../backend/models/ChoreEntry";
+import { useNavigate } from "react-router-dom";
+import obfuscateId from "../hooks/obfuscate";
 import NavBar from "./navBar";
 
 const ChoreList: React.FC<ChoreEntryProps> = ({ choreCollection }) => {
+  const navigate = useNavigate();
+
   const finishedChore = async (id: string) => {
     try {
       const choresCollection = collection(db, "chores");
@@ -27,66 +31,53 @@ const ChoreList: React.FC<ChoreEntryProps> = ({ choreCollection }) => {
     }
   };
 
-  return (
-    <div className="d-flex justify-content-center align-items-center vh-100 bg-secondary">
-      <NavBar />
-      <div className="container bg-light p-4 border border-light rounded shadow" style={{ width: "75%", maxWidth: "1200px" }}>
-        <h2 className="mb-4 text-center">All Chores To Be Completed</h2>
-        <div style={{ height: "600px", overflowY: "auto" }}>
-          {choreCollection.map((chore: Chore) => (
-            <div
-              key={chore.id}
-              className="p-3 border rounded bg-light d-flex align-items-center"
-              style={{
-                display: "flex",
-                flexDirection: "row",
-                justifyContent: "space-between",
-                alignItems: "center",
-                gap: "20px",
-                padding: "10px",
-                marginBottom: "10px",
-              }}
-            >
-              {/* Chore Details - Flex row layout */}
-              <div
-                className="d-flex"
-                style={{
-                  flex: 1,
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  gap: "20px",
-                }}
-              >
-                <p className="mb-0" style={{ minWidth: "150px", textAlign: "left" }}>
-                  <strong>{chore.user}</strong>
-                </p>
-                <p className="mb-0" style={{ minWidth: "120px", textAlign: "left" }}>
-                  {chore.due_date instanceof Timestamp ? chore.due_date.toDate().toLocaleDateString() : "No due date"}
-                </p>
-                <p className="mb-0" style={{ flex: 1, textAlign: "left" }}>{chore.chore}</p>
-              </div>
+  function handleEdit(choreId: string) {
+    try {
+      const obfuscatedId = obfuscateId(choreId);
+      navigate(`/editchore/${obfuscatedId}`);
+    } catch (error) {
+      console.error(error);
+    }
+  }
 
-              {/* Buttons Section */}
-              <div className="d-flex" style={{ gap: "10px", minWidth: "220px" }}>
-                <button className="btn btn-secondary">Edit</button>
-                <button
-                  onClick={() => finishedChore(chore.id)}
-                  className="btn"
-                  style={{
-                    backgroundColor: chore.status ? "green" : "#1c1f26",
-                    color: "white",
-                    borderRadius: "12px",
-                    padding: "5px 15px",
-                    cursor: chore.status ? "not-allowed" : "pointer",
-                  }}
+  return (
+    <div className="vh-100 d-flex">
+      <NavBar />
+      <div className="bg-dark flex-grow-1 d-flex flex-column p-5" style={{ backgroundColor: "#F9F9FB" }}>
+        <div className="d-flex justify-content-center align-items-center">
+          <div className="w-100 bg-white p-4 rounded-4 shadow-sm" style={{ maxWidth: "900px" }}>
+          <h2 className="text-center mb-4" style={{ fontWeight: "bold", color: "#333" }}>
+          To Be Completed
+        </h2>
+            <div style={{ height: "500px", overflowY: "auto" }}>
+              {choreCollection.map((chore: Chore) => (
+                <div
+                  key={chore.id}
+                  className={`p-3 d-flex flex-row align-items-center justify-content-between mb-3 rounded-4 shadow-sm ${
+                    chore.status ? "bg-success" : "bg-danger"
+                  } text-white`}
                 >
-                  {chore.status ? "Finished" : "Mark as Finished"}
-                </button>
-              </div>
+                  <div>
+                    <p className="fw-bold mb-1">{chore.user}</p>
+                    <p className="small mb-0">
+                      {chore.due_date instanceof Timestamp
+                        ? chore.due_date.toDate().toLocaleDateString()
+                        : "No due date"}
+                    </p>
+                    <p>{chore.chore}</p>
+                  </div>
+                  <div className="d-flex gap-2">
+                    <button onClick={() => handleEdit(chore.id)} className="btn btn-outline-light rounded-pill">
+                      Edit
+                    </button>
+                    <button onClick={() => finishedChore(chore.id)} className="btn btn-dark rounded-pill">
+                      {chore.status ? "Finished" : "Mark as Finished"}
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
         </div>
       </div>
     </div>

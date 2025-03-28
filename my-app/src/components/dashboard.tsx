@@ -22,7 +22,7 @@ function DashBoard() {
     <div
       className="d-flex justify-content-center align-items-center vh-100"
       style={{
-        backgroundColor: "#1c1c1c", // Dark gray background
+        backgroundColor: "#0d0d0d", // Dark gray background
         padding: "2px", // Add padding to prevent the box from touching the edges
       }}
     >

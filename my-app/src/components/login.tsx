@@ -39,7 +39,7 @@ const Login: React.FC = () => {
                     maxWidth: '400px',
                     width: '100%',
                     backgroundColor: '#1c1c1c', // Dark box
-                    borderRadius: '8px',
+                    borderRadius: '10px',
                     color: '#ccc',
                     boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
                 }}
@@ -64,7 +64,7 @@ const Login: React.FC = () => {
                                 border: '1px solid #555', // Darker border
                                 padding: '10px 15px',
                                 marginBottom: '10px',
-                                borderRadius: '4px',
+                                borderRadius: '10px',
                             }}
                             // Adjust placeholder text color to match border
                             onFocus={(e) => e.target.setAttribute('placeholder', '')}
@@ -86,7 +86,7 @@ const Login: React.FC = () => {
                                 border: '1px solid #555', // Darker border
                                 padding: '10px 15px',
                                 marginBottom: '10px',
-                                borderRadius: '4px',
+                                borderRadius: '10px',
                             }}
                             // Adjust placeholder text color to match border
                             onFocus={(e) => e.target.setAttribute('placeholder', '')}
@@ -116,6 +116,7 @@ const Login: React.FC = () => {
                     width: '100%',
                     backgroundColor: '#1c1c1c', // Dark box
                     color: '#ccc',
+                    borderRadius: '10px',
                     boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
                     textAlign: 'center',
                 }}

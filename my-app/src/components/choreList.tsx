@@ -4,7 +4,7 @@ import { updateDoc, getDocs, query, collection, where, Timestamp } from "firebas
 import Chore from "../backend/models/chore";
 import ChoreEntryProps from "../backend/models/ChoreEntry";
 import { useNavigate } from "react-router-dom";
-import obfuscateId from "../hooks/obfuscate";
+import obfuscateId from "../functions/obfuscate";
 import NavBar from "./navBar";
 
 const ChoreList: React.FC<ChoreEntryProps> = ({ choreCollection }) => {
@@ -41,15 +41,12 @@ const ChoreList: React.FC<ChoreEntryProps> = ({ choreCollection }) => {
   }
 
   return (
-    <div className="vh-100 d-flex">
+    <div className="d-flex" style={{height: "76vh", borderRadius: 4}}>
       <NavBar />
       <div className=" flex-grow-1 d-flex flex-column p-5" style={{ backgroundColor: "#222222" }}>
         <div className="d-flex justify-content-center align-items-center" >
-          <div className="w-100 bg-white p-4 rounded-4 shadow-sm" style={{ maxWidth: "900px" }}>
-          <h2 className="text-center mb-4" style={{ fontWeight: "bold", color: "#333" }}>
-          To Be Completed
-        </h2>
-            <div style={{ height: "500px", overflowY: "auto" }}>
+          <div className="w-100 bg-dark p-4 rounded-4 shadow-sm" style={{ maxWidth: "900px" }}>
+            <div style={{ height: "600px", overflowY: "auto" }}>
               {choreCollection.map((chore: Chore) => (
                 <div
                   key={chore.id}
@@ -70,7 +67,7 @@ const ChoreList: React.FC<ChoreEntryProps> = ({ choreCollection }) => {
                     <button onClick={() => handleEdit(chore.id)} className="btn btn-outline-light rounded-pill">
                       Edit
                     </button>
-                    <button onClick={() => finishedChore(chore.id)} className="btn btn-dark rounded-pill">
+                    <button onClick={() => finishedChore(chore.id)} className="btn btn-outline-light rounded-pill">
                       {chore.status ? "Finished" : "Mark as Finished"}
                     </button>
                   </div>

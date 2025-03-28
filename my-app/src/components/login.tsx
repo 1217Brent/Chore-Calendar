@@ -30,26 +30,27 @@ const Login: React.FC = () => {
     return (
         <div
             className="d-flex justify-content-center align-items-center vh-100"
-            style={{ backgroundColor: '#0d0d0d', flexDirection: 'column' }} // Stack vertically
+            style={{ backgroundColor: '#0d0d0d', flexDirection: 'column' }} // Dark gray outer background
         >
             {/* Login Container */}
             <div
-                className="p-4 mb-3"
+                className="p-5 border rounded shadow-lg"
                 style={{
                     maxWidth: '400px',
                     width: '100%',
-                    backgroundColor: '#1c1c1c', // Dark box
-                    borderRadius: '10px',
-                    color: '#ccc',
-                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
+                    backgroundColor: '#333', // Gray inner box
+                    color: '#ccc', // Light gray text
+                    borderRadius: '8px',
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.5)', // Enhanced shadow
+                    border: '2px solid #555', // Thicker border for the login container
                 }}
             >
-                <h1 className="text-center mb-4" style={{ fontSize: '2rem', fontWeight: '700', color: '#fff' }}>
+                <h1 className="text-center mb-4" style={{ fontSize: '2rem', fontWeight: '700' }}>
                     LOGIN
                 </h1>
 
                 <form onSubmit={handleLogin}>
-                    <div className="mb-3">
+                    <div className="mb-4">
                         <input
                             type="email"
                             id="email"
@@ -59,19 +60,16 @@ const Login: React.FC = () => {
                             onChange={(e) => setEmail(e.target.value)}
                             required
                             style={{
-                                backgroundColor: '#333',
+                                backgroundColor: '#444', // Dark gray input
                                 color: '#ccc',
-                                border: '1px solid #555', // Darker border
+                                border: 'none',
                                 padding: '10px 15px',
                                 marginBottom: '10px',
-                                borderRadius: '10px',
+                                borderRadius: '8px', // Rounded border
                             }}
-                            // Adjust placeholder text color to match border
-                            onFocus={(e) => e.target.setAttribute('placeholder', '')}
-                            onBlur={(e) => e.target.setAttribute('placeholder', 'Username')}
                         />
                     </div>
-                    <div className="mb-3">
+                    <div className="mb-5">
                         <input
                             type="password"
                             id="password"
@@ -81,44 +79,53 @@ const Login: React.FC = () => {
                             onChange={(e) => setPassword(e.target.value)}
                             required
                             style={{
-                                backgroundColor: '#333',
+                                backgroundColor: '#444',
                                 color: '#ccc',
-                                border: '1px solid #555', // Darker border
+                                border: 'none',
                                 padding: '10px 15px',
                                 marginBottom: '10px',
-                                borderRadius: '10px',
+                                borderRadius: '8px',
                             }}
-                            // Adjust placeholder text color to match border
-                            onFocus={(e) => e.target.setAttribute('placeholder', '')}
-                            onBlur={(e) => e.target.setAttribute('placeholder', 'Password')}
                         />
                     </div>
-                    {error && <p className="text-danger">{error}</p>}
 
-                    <div className="d-flex justify-content-center mb-4">
-                        <button type="submit" className="btn btn-primary" style={{
-                            width: '100%',
-                            backgroundColor: '#007bff',
-                            padding: '10px 0',
-                            fontWeight: '500',
-                        }}>
+                    {error && (
+                        <p className="text-danger" style={{ textAlign: 'center' }}>
+                            {error}
+                        </p>
+                    )}
+
+                    <div className="d-flex justify-content-between mb-4">
+                        <button
+                            type="submit"
+                            className="btn btn-primary"
+                            style={{
+                                width: '100%',
+                                backgroundColor: '#007bff',
+                                padding: '10px 0',
+                                fontWeight: '500',
+                                borderRadius: '8px', // Rounded button
+                            }}
+                        >
                             LOGIN
                         </button>
                     </div>
                 </form>
             </div>
 
-            {/* "Don’t have an account? Sign Up" Container */}
+            {/* "Don’t have an account? Sign Up" */}
             <div
                 className="p-4"
                 style={{
                     maxWidth: '400px',
                     width: '100%',
-                    backgroundColor: '#1c1c1c', // Dark box
+                    backgroundColor: '#333', // Dark inner box
                     color: '#ccc',
-                    borderRadius: '10px',
-                    boxShadow: '0 8px 24px rgba(0, 0, 0, 0.5)',
+                    borderRadius: '8px',
+                    boxShadow: '0 8px 16px rgba(0, 0, 0, 0.5)',
                     textAlign: 'center',
+                    marginTop: '10px',
+                    border: '1px solid white', // Thicker border with the same color as the login container
                 }}
             >
                 <p className="mb-0" style={{ color: '#ccc' }}>

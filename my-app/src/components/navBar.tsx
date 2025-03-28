@@ -1,29 +1,34 @@
 import React from "react";
-import { Link, useLocation, useNavigate } from "react-router-dom"; // Import useNavigate
-import { signOut } from "firebase/auth"; // Import Firebase signOut
-import { auth } from "../firebaseConfig"; // Import Firebase auth
+import { Link, useLocation, useNavigate } from "react-router-dom"; 
+import { signOut } from "firebase/auth"; 
+import { auth } from "../firebaseConfig"; 
 
 function NavBar() {
   const location = useLocation();
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleSignOut = async () => {
     try {
-      await signOut(auth); // Sign out the user from Firebase Authentication
+      await signOut(auth);
       console.log("User signed out successfully");
-      navigate("/"); // Redirect to the login page
+      navigate("/"); 
     } catch (error) {
       console.error("Error signing out:", error);
     }
   };
 
   return (
-    <nav className="text-white vh-100 d-flex flex-column p-3" style={{ width: "280px", backgroundColor: "#222222" }}>
+    <nav
+      className="text-white d-flex flex-column p-3"
+      style={{
+        width: "200px", // Fixed sidebar width
+        backgroundColor: "#222222",
+        height: "76vh", // Ensure the sidebar takes full height
+      }}
+    >
       <div
         className="d-flex align-items-center justify-content-center mb-4"
-        style={{
-          marginTop: "20px", // Increased margin to shift the text down
-        }}
+        style={{ marginTop: "20px" }}
       >
         <Link to="/dashboard" className="text-white text-decoration-none">
           <span className="fs-4">Chore Calendar</span>
@@ -67,18 +72,6 @@ function NavBar() {
         </li>
       </ul>
       <hr />
-      <div className="mt-auto">
-        <div className="d-flex align-items-center text-white">
-          <img
-            src="https://github.com/mdo.png"
-            alt=""
-            width="32"
-            height="32"
-            className="rounded-circle me-2"
-          />
-          <strong>mdo</strong>
-        </div>
-      </div>
     </nav>
   );
 }

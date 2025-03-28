@@ -54,7 +54,6 @@ const SignUp: React.FC = () => {
             navigate('/');
         } catch (error: any) {
             console.error("Error signing up:", error.message);
-            alert("Error signing up: " + error.message);
         }
     };
 
@@ -76,6 +75,7 @@ const SignUp: React.FC = () => {
                     color: '#ccc', // Light gray text
                     borderRadius: '8px',
                     boxShadow: '0 8px 16px rgba(0, 0, 0, 0.5)', // Enhanced shadow
+                    border: '1px solid white',
                 }}
             >
                 <h2 className="text-center mb-4">Sign Up</h2>

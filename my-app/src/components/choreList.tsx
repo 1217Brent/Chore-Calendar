@@ -41,12 +41,12 @@ const ChoreList: React.FC<ChoreEntryProps> = ({ choreCollection }) => {
   }
 
   return (
-    <div className="d-flex" style={{height: "76vh", borderRadius: 4}}>
+    <div className="d-flex" style={{ height: "76vh", borderRadius: 4 }}>
       <NavBar />
-      <div className=" flex-grow-1 d-flex flex-column p-5" style={{ backgroundColor: "#222222" }}>
-        <div className="d-flex justify-content-center align-items-center" >
+      <div className="flex-grow-1 d-flex flex-column p-5" style={{ backgroundColor: "#222222" }}>
+        <div className="d-flex justify-content-center align-items-center">
           <div className="w-100 bg-dark p-4 rounded-4 shadow-sm" style={{ maxWidth: "900px" }}>
-            <div style={{ height: "600px", overflowY: "auto" }}>
+            <div style={{ height: "500px", overflowY: "auto" }}>
               {choreCollection.map((chore: Chore) => (
                 <div
                   key={chore.id}

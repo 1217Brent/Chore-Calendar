@@ -2,6 +2,7 @@ import { collection, getDocs, deleteDoc, doc, getDoc, addDoc, query, where, Time
 import { db } from "../firebaseConfig";
 import Chore from "./models/chore";
 import ChoreEntryProps from "./models/ChoreEntry";
+import { getAuth } from "firebase/auth";
 
 // Fetch all chores from the Firestore database
 export const fetchAllChores = async (): Promise<ChoreEntryProps> => {
@@ -49,6 +50,27 @@ export const addChore = async (id: string, due_date: Timestamp, user: string, ch
         console.log("Successfully created new chore");
     } catch (error) {
         console.log("Failed to addChore", error);
+    }
+}
+
+/**
+ * Add a new chore and attach the signed-in user's email.
+ * @param chore The chore object (without email).
+ * @returns A promise that resolves to the added document reference.
+ */
+export const addChoreWithUserEmail = async (chore: Omit<Chore, "email">) => {
+    try {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        if (!user || !user.email) {
+            throw new Error("No authenticated user or email found.");
+        }
+        const choreWithEmail = { ...chore, email: user.email };
+        const docRef = await addDoc(collection(db, "chores"), choreWithEmail);
+        return docRef;
+    } catch (error) {
+        console.error("Error adding chore: ", error);
+        throw error;
     }
 }
 

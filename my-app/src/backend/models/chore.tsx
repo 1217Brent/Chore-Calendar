@@ -6,5 +6,6 @@ export default interface Chore {
     due_date: Timestamp;
     status: boolean;
     user: string;
+    email: string;
 }
 

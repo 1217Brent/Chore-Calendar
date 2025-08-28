@@ -17,6 +17,11 @@ const SignUp: React.FC = () => {
 
   const [error, setError] = useState<Boolean>(false);
   const [errorMessage, setErrorMessage] = useState<String>("");
+  const errorMessages: Record<string, string> = {
+    "auth/email-already-in-use": "This email is already in use.",
+    "auth/invalid-email": "Invalid email address.",
+    "auth/weak-password": "Password must be at least 6 characters long.",
+  };
 
   const navigate = useNavigate();
 
@@ -61,7 +66,8 @@ const SignUp: React.FC = () => {
     } catch (error: any) {
       console.error("Error signing up:", error.message);
       setError(true);
-      setErrorMessage(error.message);
+      const err = errorMessages[error.code] || "Something Happened. Please Try Again";
+      setErrorMessage(err);
     }
   };
 
@@ -88,7 +94,11 @@ const SignUp: React.FC = () => {
       >
         <h2 className="text-center mb-4">Sign Up</h2>
         <form onSubmit={handleSubmit}>
-          {error ? <div>{errorMessage}</div> : null}
+          {error && (
+            <div className="alert alert-danger mt-3" role="alert">
+              {errorMessage}
+            </div>
+          )}
           <div className="mb-3">
             <label htmlFor="name" className="form-label">
               Name
@@ -99,6 +109,7 @@ const SignUp: React.FC = () => {
               name="name"
               value={formData.name}
               onChange={handleChange}
+              required
               className="form-control"
               placeholder="Enter your name"
               style={{ backgroundColor: "#444", color: "#ccc", border: "none" }} // Styled input
@@ -111,6 +122,7 @@ const SignUp: React.FC = () => {
             <input
               type="email"
               id="email"
+              required
               name="email"
               value={formData.email}
               onChange={handleChange}
@@ -128,6 +140,7 @@ const SignUp: React.FC = () => {
               id="password"
               name="password"
               value={formData.password}
+              required
               onChange={handleChange}
               className="form-control"
               placeholder="Enter your password"
@@ -142,6 +155,7 @@ const SignUp: React.FC = () => {
               type="password"
               id="confirmPassword"
               name="confirmPassword"
+              required
               value={formData.confirmPassword}
               onChange={handleChange}
               className="form-control"

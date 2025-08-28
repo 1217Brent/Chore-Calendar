@@ -55,7 +55,7 @@ const Login: React.FC = () => {
                             type="email"
                             id="email"
                             className="form-control"
-                            placeholder="Username"
+                            placeholder="Email"
                             value={email}
                             onChange={(e) => setEmail(e.target.value)}
                             required

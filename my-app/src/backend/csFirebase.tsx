@@ -104,3 +104,21 @@ export const deleteChore = async (choreId: string): Promise<void> => {
         throw error;
     }
 };
+
+// Fetch chore based on current user's email
+export const fetchChoreByEmail = async (email: string): Promise<Chore[]> => {
+    try {
+        const choresCollection = collection(db, "chores");
+        const q = query(choresCollection, where("email", "==", email));
+        const querySnapshot = await getDocs(q);
+
+        const chores: Chore[] = [];
+        querySnapshot.forEach((doc) => {
+            chores.push({ ...doc.data(), id: doc.id } as Chore);
+        });
+        return chores;
+    } catch (error) {
+        console.error("Error fetching chores by email: ", error);
+        throw error;
+    }
+};

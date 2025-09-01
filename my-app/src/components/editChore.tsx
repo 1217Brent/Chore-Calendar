@@ -137,28 +137,13 @@ function EditChore() {
                     <button type="button" className="btn btn-danger" onClick={handleBack}>
                         Back
                     </button>
+                    <button className="btn btn-danger">
+                        Delete Chore
+                    </button>
                     <button type="submit" className="btn btn-primary">
                         Submit
                     </button>
                 </div>
-                <button
-                    type="button"
-                    className="btn btn-outline-danger w-100"
-                    onClick={async () => {
-                        if (window.confirm("Are you sure you want to delete this chore?")) {
-                            try {
-                                deleteChore(choreData.id);
-                                alert("Chore deleted!");
-                                navigate('/dashboard');
-                            } catch (error) {
-                                console.error(error);
-                                alert("Failed to delete chore");
-                            }
-                        }
-                    }}
-                >
-                    Delete Chore
-                </button>
             </form>
         </div>
     );

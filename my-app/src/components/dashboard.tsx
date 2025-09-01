@@ -2,6 +2,10 @@ import { useState, useEffect } from "react";
 import ChoreList from "./choreList"; // Import ChoreList component
 import { fetchAllChores } from "../backend/csFirebase";
 import ChoreEntryProps from "../backend/models/ChoreEntry";
+import { fetchChoreByEmail } from "../backend/csFirebase";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+
+const auth = getAuth();
 
 function DashBoard() {
   const [allChores, setAllChores] = useState<ChoreEntryProps>({ choreCollection: [] });
@@ -9,8 +13,12 @@ function DashBoard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const chores = await fetchAllChores();
-        setAllChores({ choreCollection: chores.choreCollection });
+        const auth = getAuth();
+        const user = auth.currentUser;
+        if (user && user.email) {
+          const chores = await fetchChoreByEmail(user.email);
+          setAllChores({ choreCollection: chores });
+        }
       } catch (error) {
         console.error("Error fetching chores:", error);
       }

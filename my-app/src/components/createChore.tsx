@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom"; // Import useNavigate
 import { Timestamp, addDoc, collection, updateDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig";
+import { getAuth } from "firebase/auth";
+import { useEffect } from "react";
+
+const auth = getAuth();
 
 type ChoreToCreate = {
     user: string;
@@ -9,6 +13,7 @@ type ChoreToCreate = {
     due_date: string; // Change to string for input handling
     status: boolean;
     chore: string;
+    email: string;
 };
 
 function CreateChore() {
@@ -18,7 +23,18 @@ function CreateChore() {
         due_date: "", // Initialize as an empty string
         chore: "",
         status: false,
+        email: "",
     });
+
+    useEffect(() => {
+        const unsubscribe = auth.onAuthStateChanged((user) => {
+            setChoreData((prev) => ({
+                ...prev,
+                email: user?.email ?? "",
+            }));
+        });
+        return () => unsubscribe();
+    }, []);
     const navigate = useNavigate();
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {

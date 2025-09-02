@@ -46,7 +46,7 @@ const Login: React.FC = () => {
                 }}
             >
                 <h1 className="text-center mb-4" style={{ fontSize: '2rem', fontWeight: '700' }}>
-                    LOGIN
+                    Login
                 </h1>
 
                 <form onSubmit={handleLogin}>
@@ -107,7 +107,7 @@ const Login: React.FC = () => {
                                 borderRadius: '8px', // Rounded button
                             }}
                         >
-                            LOGIN
+                            Login
                         </button>
                     </div>
                 </form>

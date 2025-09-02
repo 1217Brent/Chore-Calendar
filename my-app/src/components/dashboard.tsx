@@ -40,7 +40,7 @@ function DashBoard() {
           width: "90%",
           maxWidth: "1000px", 
           height: "90%",
-          maxHeight: "100vh", // Ensure it doesn't go off the page
+          maxHeight: "1000vh", // Ensure it doesn't go off the page
           backgroundColor: "#333", 
           color: "#ccc", //text
           border: '1px solid white',

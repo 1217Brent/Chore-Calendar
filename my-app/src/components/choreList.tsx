@@ -46,33 +46,39 @@ const ChoreList: React.FC<ChoreEntryProps> = ({ choreCollection }) => {
       <div className="flex-grow-1 d-flex flex-column p-5" style={{ backgroundColor: "#222222" }}>
         <div className="d-flex justify-content-center align-items-center">
           <div className="w-100 bg-dark p-4 rounded-4 shadow-sm" style={{ maxWidth: "900px" }}>
-            <div style={{ height: "500px", overflowY: "auto" }}>
-              {choreCollection.map((chore: Chore) => (
-                <div
-                  key={chore.id}
-                  className={`p-3 d-flex flex-row align-items-center justify-content-between mb-3 rounded-4 shadow-sm ${
-                    chore.status ? "bg-success" : "bg-danger"
-                  } text-white`}
-                >
-                  <div>
-                    <p className="fw-bold mb-1">{chore.user}</p>
-                    <p className="small mb-0">
-                      {chore.due_date instanceof Timestamp
-                        ? chore.due_date.toDate().toLocaleDateString()
-                        : "No due date"}
-                    </p>
-                    <p>{chore.chore}</p>
-                  </div>
-                  <div className="d-flex gap-2">
-                    <button onClick={() => handleEdit(chore.id)} className="btn btn-outline-light rounded-pill">
-                      Edit
-                    </button>
-                    <button onClick={() => finishedChore(chore.id)} className="btn btn-outline-light rounded-pill">
-                      {chore.status ? "Finished" : "Mark as Finished"}
-                    </button>
-                  </div>
+            <div style={{ height: "725px", overflowY: "auto" }}>
+              {choreCollection.length === 0 ? (
+                <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}>
+                  <h3 className="text-secondary">so empty...</h3>
                 </div>
-              ))}
+              ) : (
+                choreCollection.map((chore: Chore) => (
+                  <div
+                    key={chore.id}
+                    className={`p-3 d-flex flex-row align-items-center justify-content-between mb-3 rounded-4 shadow-sm ${
+                      chore.status ? "bg-success" : "bg-danger"
+                    } text-white`}
+                  >
+                    <div>
+                      <p className="fw-bold mb-1">{chore.user}</p>
+                      <p className="small mb-0">
+                        {chore.due_date instanceof Timestamp
+                          ? chore.due_date.toDate().toLocaleDateString()
+                          : "No due date"}
+                      </p>
+                      <p>{chore.chore}</p>
+                    </div>
+                    <div className="d-flex gap-2">
+                      <button onClick={() => handleEdit(chore.id)} className="btn btn-outline-light rounded-pill">
+                        Edit
+                      </button>
+                      <button onClick={() => finishedChore(chore.id)} className="btn btn-outline-light rounded-pill">
+                        {chore.status ? "Finished" : "Mark as Finished"}
+                      </button>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>

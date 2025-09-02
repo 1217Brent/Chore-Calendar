@@ -111,7 +111,7 @@ const SignUp: React.FC = () => {
               onChange={handleChange}
               required
               className="form-control"
-              placeholder="Enter your name"
+              //placeholder="Enter your name"
               style={{ backgroundColor: "#444", color: "#ccc", border: "none" }} // Styled input
             />
           </div>
@@ -127,7 +127,7 @@ const SignUp: React.FC = () => {
               value={formData.email}
               onChange={handleChange}
               className="form-control"
-              placeholder="Enter your email"
+              //placeholder="Enter your email"
               style={{ backgroundColor: "#444", color: "#ccc", border: "none" }} // Styled input
             />
           </div>
@@ -143,7 +143,7 @@ const SignUp: React.FC = () => {
               required
               onChange={handleChange}
               className="form-control"
-              placeholder="Enter your password"
+              //placeholder="Enter your password"
               style={{ backgroundColor: "#444", color: "#ccc", border: "none" }} // Styled input
             />
           </div>
@@ -159,14 +159,14 @@ const SignUp: React.FC = () => {
               value={formData.confirmPassword}
               onChange={handleChange}
               className="form-control"
-              placeholder="Confirm your password"
+              //placeholder="Confirm your password"
               style={{ backgroundColor: "#444", color: "#ccc", border: "none" }} // Styled input
             />
           </div>
           <div className="d-flex justify-content-between">
             <button
               type="button"
-              className="btn btn-secondary"
+              className="btn btn-danger"
               onClick={handleBack}
             >
               Back

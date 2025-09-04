@@ -49,7 +49,7 @@ const ChoreList: React.FC<ChoreEntryProps> = ({ choreCollection }) => {
             <div style={{ height: "725px", overflowY: "auto" }}>
               {choreCollection.length === 0 ? (
                 <div className="d-flex justify-content-center align-items-center" style={{ height: "100%" }}>
-                  <h3 className="text-secondary">so empty...</h3>
+                  <h3 className="text-secondary">No chores yet — add your first one!</h3>
                 </div>
               ) : (
                 choreCollection.map((chore: Chore) => (
